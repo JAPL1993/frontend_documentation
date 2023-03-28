@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="grid grid-flow-row">
+    <div *ngFor="let item of content" class="row-auto">
+      <div class="bg-gray-200">
+        <p class="p-2 text-4xl text-black">{{ item.slug }}</p>
+      </div>
+      <div class="container p-7">
+        <div class="flex justify-center">
+          <img src="{{ item.image }}" alt="{{ item.title }}" class="" />
+        </div>
+        <p class="text-3xl text-black">{{ item.title }}</p>
+        <p class="text-lg text-gray-400">{{ item.description }}</p>
+        <div
+          *ngFor="let article of item.articles"
+          class="container mt-3 rounded-xl bg-slate-300 pl-7 pr-7 pt-5 pb-5 shadow-md drop-shadow-2xl"
+        >
+          <div>
+            <p class="text-xl text-black">{{ article.title }}</p>
+            <p class="text-lg text-blue-900">{{ article.description }}</p>
+            <div class="rounded-lg bg-slate-800 p-2 shadow-sm shadow-slate-800">
+              <p class="text-lg text-green-600">{{ article.endpoint }}</p>
+            </div>
+          </div>
+          <div class="container mt-2">
+            <div class="grid grid-cols-4 gap-3">
+              <div
+                *ngFor="let detail of article.articleDetails"
+                class="rounded-md bg-white p-3 shadow-md shadow-blue-800"
+              >
+                <p class="text-green-600">{{ detail.type }}</p>
+                <ngx-json-viewer
+                  [json]="toJson(detail.data)"
+                  [expanded]="true"
+                ></ngx-json-viewer>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
