@@ -8,4 +8,10 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'Documentation';
   classes = ['example-container', 'rounded-xl'];
+  isOpen: boolean = true;
+
+  statusSide() {
+    this.isOpen = !this.isOpen;
+    console.log(this.isOpen);
+  }
 }

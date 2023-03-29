@@ -1,11 +1,14 @@
 <mat-sidenav-container [class]="classes" autosize>
   <mat-sidenav
     mode="side"
-    opened
+    [opened]="isOpen"
     class="rounded-xl bg-blue-200 px-7 pt-3 text-xs text-gray-600 shadow-2xl drop-shadow-lg md:text-xl xl:text-2xl"
     ><app-sidebar class="rounded-xl"></app-sidebar
   ></mat-sidenav>
   <mat-sidenav-content>
+    <div class="container bg-blue-300 sm:hidden">
+      <button (click)="statusSide()">Aqui el boton</button>
+    </div>
     <div class="min-h-screen bg-gray-100 shadow-2xl drop-shadow-2xl">
       <router-outlet></router-outlet>
     </div>

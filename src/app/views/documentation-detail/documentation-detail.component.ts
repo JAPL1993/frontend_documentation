@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DocumentationService } from './documentation.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './documentation-detail.component.html',
   styleUrls: ['./documentation-detail.component.scss'],
 })
-export class DocumentationDetailComponent implements OnInit {
+export class DocumentationDetailComponent implements OnInit, OnDestroy {
   content: any[] = [];
   private sub: any;
   constructor(
@@ -27,6 +27,10 @@ export class DocumentationDetailComponent implements OnInit {
   }
 
   toJson(data: any) {
-    return JSON.parse(data);
+    try {
+      return JSON.parse(data);
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
