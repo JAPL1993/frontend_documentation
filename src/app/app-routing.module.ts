@@ -8,6 +8,13 @@ const routes: Routes = [
     title: 'Document Section',
     component: DocumentationDetailComponent,
   },
+  {
+    path: 'documentation-edit',
+    loadChildren: () =>
+      import('./documentation/documentation.module').then(
+        (m) => m.DocumentationModule
+      ),
+  },
 ];
 
 @NgModule({

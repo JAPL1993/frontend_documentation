@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DocumentationService } from './documentation.service';
 import { ActivatedRoute } from '@angular/router';
+import { AlertService } from 'src/app/alert.service';
 
 @Component({
   selector: 'app-documentation-detail',
@@ -12,7 +13,8 @@ export class DocumentationDetailComponent implements OnInit, OnDestroy {
   private sub: any;
   constructor(
     private documentation: DocumentationService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private alert: AlertService
   ) {}
 
   ngOnInit(): void {

@@ -12,6 +12,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { StoreModule } from '@ngrx/store';
 import { DocumentationDetailComponent } from './views/documentation-detail/documentation-detail.component';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
+import { MenuService } from './menu.service';
+import { AlertService } from './alert.service';
+import { DocumentationService } from './views/documentation-detail/documentation.service';
+import { MatTableModule } from '@angular/material/table';
 @NgModule({
   declarations: [AppComponent, SidebarComponent, DocumentationDetailComponent],
   imports: [
@@ -23,8 +27,9 @@ import { NgxJsonViewerModule } from 'ngx-json-viewer';
     MatIconModule,
     StoreModule.forRoot({}, {}),
     NgxJsonViewerModule,
+    MatTableModule,
   ],
-  providers: [],
+  providers: [MenuService, AlertService, DocumentationService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

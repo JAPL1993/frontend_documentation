@@ -1,0 +1,44 @@
+<div class="container p-5">
+  <p class="text-4xl text-black">Edit or create section for the Docs</p>
+  <div
+    class="cotainer min-h-screen rounded-xl bg-white p-2 shadow-2xl shadow-slate-900"
+  >
+    <div class="grid grid-rows-2">
+      <div class="grid grid-cols-2">
+        <p class="text-3xl text-black">Sections</p>
+        <button class="text-black">Esto es el boton de crear</button>
+      </div>
+      <div class="">
+        <table class="table-fixed text-black shadow-xl shadow-gray-600">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Image</th>
+              <th>Slug</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of sections" class="table-row">
+              <td>{{ item.id }}</td>
+              <td>{{ item.title }}</td>
+              <td>{{ item.description }}</td>
+              <td>{{ item.image }}</td>
+              <td>{{ item.slug }}</td>
+              <td>
+                <div class="container">
+                  <div class="grid grid-cols-2 gap-1">
+                    <div>Boton1</div>
+                    <div>Boton2</div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
