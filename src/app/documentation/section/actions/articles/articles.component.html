@@ -1,0 +1,77 @@
+<h2 mat-dialog-title>Articles</h2>
+<mat-dialog-content>
+  <div class="container p-5">
+    <p class="text-4xl text-black">Edit or create Articles for the Section</p>
+    <div
+      class="cotainer min-h-screen min-w-fit rounded-xl bg-white p-2 shadow-2xl shadow-slate-900"
+    >
+      <div class="">
+        <div class="grid grid-cols-2 justify-center">
+          <div><p class="text-3xl text-black">Articles</p></div>
+          <div>
+            <button
+              mat-raised-button
+              class="bg-green-500"
+              (click)="addArticle()"
+            >
+              Add Article <mat-icon>add</mat-icon>
+            </button>
+          </div>
+        </div>
+        <div
+          class="relative overflow-x-auto rounded-2xl p-5 shadow-2xl shadow-slate-600"
+        >
+          <table class="w-full text-black">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Endpoint</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of articles" class="table-row">
+                <td class="rounded-2xl border border-slate-300 p-3">
+                  {{ item.id }}
+                </td>
+                <td class="border p-3">{{ item.title }}</td>
+                <td class="border border-slate-300 p-3">
+                  {{ item.description }}
+                </td>
+                <td class="border border-slate-300 p-3">{{ item.endpoint }}</td>
+                <td class="border border-slate-300">
+                  <div class="container p-2">
+                    <button
+                      mat-icon-button
+                      matMenu
+                      [matMenuTriggerFor]="menu"
+                      aria-label="Example icon-button with a menu"
+                    >
+                      <mat-icon>apps</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                      <button mat-menu-item>
+                        <mat-icon>edit</mat-icon>
+                        <span>Edit</span>
+                      </button>
+                      <button mat-menu-item (click)="deleteArticle(item.id)">
+                        <mat-icon>delete</mat-icon>
+                        <span>Delete</span>
+                      </button>
+                      <button mat-menu-item>
+                        <mat-icon>info</mat-icon>
+                        <span>Articles</span>
+                      </button>
+                    </mat-menu>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>

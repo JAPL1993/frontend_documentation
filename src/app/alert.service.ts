@@ -28,13 +28,12 @@ export class AlertService {
     this.showAlert('Advertencia', message, 'warning');
   }
 
-  showConfirmationAlert(message: string): Promise<boolean> {
-    return this.showAlert('Confirmación', message, 'question', [
-      'Sí',
-      'No',
-    ]).then((result) => {
-      return result.isConfirmed;
-    });
+  showConfirmationAlert(title: string, message: string): Promise<boolean> {
+    return this.showAlert(title, message, 'question', ['Yes', 'No']).then(
+      (result) => {
+        return result.isConfirmed;
+      }
+    );
   }
 
   showInputAlert(

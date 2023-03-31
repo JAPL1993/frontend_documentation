@@ -1,0 +1,43 @@
+<p mat-dialog-title>Add New Section</p>
+<mat-dialog-content>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Title</mat-label>
+      <input matInput placeholder="Placeholder" [(ngModel)]="data.title" />
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint>set a title</mat-hint>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <input
+        matInput
+        placeholder="Placeholder"
+        [(ngModel)]="data.description"
+      />
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint>set a description</mat-hint>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Image</mat-label>
+      <input matInput placeholder="Placeholder" [(ngModel)]="data.image" />
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint>set a image</mat-hint>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Slug</mat-label>
+      <input matInput placeholder="Placeholder" [(ngModel)]="data.slug" />
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint>set a slug</mat-hint>
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button cdkFocusInitial (click)="save()">Save</button>
+</mat-dialog-actions>

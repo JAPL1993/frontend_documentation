@@ -3,13 +3,19 @@
   <div
     class="cotainer min-h-screen rounded-xl bg-white p-2 shadow-2xl shadow-slate-900"
   >
-    <div class="grid grid-rows-2">
-      <div class="grid grid-cols-2">
-        <p class="text-3xl text-black">Sections</p>
-        <button class="text-black">Esto es el boton de crear</button>
+    <div class="">
+      <div class="grid grid-cols-2 justify-center">
+        <div><p class="text-3xl text-black">Sections</p></div>
+        <div>
+          <button mat-raised-button class="bg-green-500" (click)="addSection()">
+            Add Section <mat-icon>add</mat-icon>
+          </button>
+        </div>
       </div>
-      <div class="">
-        <table class="table-fixed text-black shadow-xl shadow-gray-600">
+      <div
+        class="relative overflow-x-auto rounded-2xl p-5 shadow-2xl shadow-slate-600"
+      >
+        <table class="w-full text-black">
           <thead>
             <tr>
               <th>Id</th>
@@ -22,17 +28,39 @@
           </thead>
           <tbody>
             <tr *ngFor="let item of sections" class="table-row">
-              <td>{{ item.id }}</td>
-              <td>{{ item.title }}</td>
-              <td>{{ item.description }}</td>
-              <td>{{ item.image }}</td>
-              <td>{{ item.slug }}</td>
-              <td>
-                <div class="container">
-                  <div class="grid grid-cols-2 gap-1">
-                    <div>Boton1</div>
-                    <div>Boton2</div>
-                  </div>
+              <td class="rounded-2xl border border-slate-300 p-3">
+                {{ item.id }}
+              </td>
+              <td class="border p-3">{{ item.title }}</td>
+              <td class="border border-slate-300 p-3">
+                {{ item.description }}
+              </td>
+              <td class="border border-slate-300 p-3">{{ item.image }}</td>
+              <td class="border border-slate-300 p-3">{{ item.slug }}</td>
+              <td class="border border-slate-300">
+                <div class="container p-2">
+                  <button
+                    mat-icon-button
+                    matMenu
+                    [matMenuTriggerFor]="menu"
+                    aria-label="Example icon-button with a menu"
+                  >
+                    <mat-icon>apps</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="getSectionById(item.id)">
+                      <mat-icon>edit</mat-icon>
+                      <span>Edit</span>
+                    </button>
+                    <button mat-menu-item (click)="deleteSection(item.id)">
+                      <mat-icon>delete</mat-icon>
+                      <span>Delete</span>
+                    </button>
+                    <button mat-menu-item (click)="openArticles(item.id)">
+                      <mat-icon>info</mat-icon>
+                      <span>Articles</span>
+                    </button>
+                  </mat-menu>
                 </div>
               </td>
             </tr>
