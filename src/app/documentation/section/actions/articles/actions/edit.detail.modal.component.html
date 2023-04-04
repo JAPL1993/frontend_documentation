@@ -1,0 +1,30 @@
+<p mat-dialog-title>Add New Article</p>
+<mat-dialog-content>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Type</mat-label>
+      <mat-select [(ngModel)]="result.type">
+        <mat-option value="BODY">BODY</mat-option>
+        <mat-option value="PARAMS">PARAMS</mat-option>
+        <mat-option value="RESPONSE">RESPONSE</mat-option>
+      </mat-select>
+      <mat-hint align="end">Select the type</mat-hint>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Data</mat-label>
+      <textarea
+        matInput
+        placeholder="Placeholder"
+        [(ngModel)]="result.data"
+      ></textarea>
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint>set the data</mat-hint>
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button cdkFocusInitial (click)="save()">Save</button>
+</mat-dialog-actions>

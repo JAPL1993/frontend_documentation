@@ -1,0 +1,35 @@
+<p mat-dialog-title>Add New Article</p>
+<mat-dialog-content>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Title</mat-label>
+      <input matInput placeholder="Placeholder" [(ngModel)]="result.title" />
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint>set a title</mat-hint>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <input
+        matInput
+        placeholder="Placeholder"
+        [(ngModel)]="result.description"
+      />
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint>set a description</mat-hint>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Endpoint</mat-label>
+      <input matInput placeholder="Placeholder" [(ngModel)]="result.endpoint" />
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint>set an endpoint</mat-hint>
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button cdkFocusInitial (click)="save()">Save</button>
+</mat-dialog-actions>

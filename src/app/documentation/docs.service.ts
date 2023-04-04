@@ -23,4 +23,7 @@ export class DocsService {
   saveSection(data: any): Observable<any> {
     return this.http.post<any>(`${this.urlBase}/section`, data);
   }
+  editSection(id: number, data: any): Observable<any> {
+    return this.http.put<any>(`${this.urlBase}/section/${id}`, data);
+  }
 }

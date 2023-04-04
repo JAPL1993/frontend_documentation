@@ -12,9 +12,9 @@
             <button
               mat-raised-button
               class="bg-green-500"
-              (click)="addArticle()"
+              (click)="addDetail()"
             >
-              Add Article <mat-icon>add</mat-icon>
+              Add Detail <mat-icon>add</mat-icon>
             </button>
           </div>
         </div>
@@ -25,22 +25,18 @@
             <thead>
               <tr>
                 <th>Id</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Endpoint</th>
+                <th>Type</th>
+                <th>Data</th>
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of articles" class="table-row">
+              <tr *ngFor="let item of articles.details" class="table-row">
                 <td class="rounded-2xl border border-slate-300 p-3">
                   {{ item.id }}
                 </td>
-                <td class="border p-3">{{ item.title }}</td>
-                <td class="border border-slate-300 p-3">
-                  {{ item.description }}
-                </td>
-                <td class="border border-slate-300 p-3">{{ item.endpoint }}</td>
+                <td class="border p-3">{{ item.type }}</td>
+                <td class="border border-slate-300 p-3">{{ item.data }}</td>
                 <td class="border border-slate-300">
                   <div class="container p-2">
                     <button
@@ -59,13 +55,6 @@
                       <button mat-menu-item (click)="deleteArticle(item.id)">
                         <mat-icon>delete</mat-icon>
                         <span>Delete</span>
-                      </button>
-                      <button
-                        mat-menu-item
-                        (click)="detailModal(item.articleDetails, item.id)"
-                      >
-                        <mat-icon>info</mat-icon>
-                        <span>Detail</span>
                       </button>
                     </mat-menu>
                   </div>

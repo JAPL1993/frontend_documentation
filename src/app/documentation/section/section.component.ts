@@ -1,5 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { Component, OnInit, Inject } from '@angular/core';
+import {
+  MAT_DIALOG_DATA,
+  MatDialog,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { AlertService } from 'src/app/alert.service';
 import { DocsService } from '../docs.service';
 import { MatAccordion } from '@angular/material/expansion';
@@ -85,6 +89,17 @@ export class SectionComponent implements OnInit {
     });
     modalRef.afterClosed().subscribe((result) => console.log(result));
   }
+  edit(id: number) {
+    const modalRef = this.modal.open(EditSectionModalComponent, {
+      data: { id },
+    });
+    modalRef.afterClosed().subscribe((result) => {
+      if (result) {
+        const index = this.sections.findIndex((x: any) => x.id === id);
+        this.sections[index] = result;
+      }
+    });
+  }
 }
 
 interface Objeto {
@@ -106,7 +121,8 @@ export class AddSectionModal {
   };
   constructor(
     public modalRef: MatDialogRef<AddSectionModal>,
-    private alert: AlertService
+    private alert: AlertService,
+    private modal: MatDialog
   ) {}
   save() {
     for (const key of Object.keys(this.data)) {
@@ -120,5 +136,60 @@ export class AddSectionModal {
   }
   isEmpty(value: string): boolean {
     return value.trim().length === 0;
+  }
+}
+
+@Component({
+  selector: 'edit-section-modal',
+  templateUrl: './actions/edit.section.modal.component.html',
+})
+export class EditSectionModalComponent implements OnInit {
+  result: any = {};
+  constructor(
+    public modalRef: MatDialogRef<EditSectionModalComponent>,
+    private alert: AlertService,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private service: DocsService
+  ) {}
+  ngOnInit(): void {
+    this.service
+      .getSectionById(this.data.id)
+      .subscribe((result) => (this.result = result));
+  }
+  save() {
+    this.alert
+      .showConfirmationAlert(
+        'Update confirmation',
+        'Do you realy wish to update this detail?'
+      )
+      .then((status) => {
+        if (status) {
+          for (const key of Object.keys(this.result)) {
+            const value = this.result[key];
+            if (this.isEmpty(value)) {
+              this.alert.showErrorAlert(`La key ${key} no puede estar vacia`);
+              return;
+            }
+          }
+          this.service
+            .editSection(this.data.id, this.result)
+            .subscribe((result) => {
+              if (result) {
+                this.alert.showToast('Updated', 'Successfuly');
+                this.modalRef.close(this.result);
+              }
+            });
+        }
+      });
+  }
+  isEmpty(value: string | number): boolean {
+    console.log(typeof value);
+    if (typeof value == 'string') {
+      return value.trim().length === 0;
+    } else if (typeof value == 'number') {
+      return value > 0 ? false : true;
+    } else {
+      return true;
+    }
   }
 }

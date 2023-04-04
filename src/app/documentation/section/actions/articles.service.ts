@@ -19,4 +19,17 @@ export class ArticlesService {
   saveArticle(data: any): Observable<any> {
     return this.http.post<any>(`${this.urlBase}/article`, data);
   }
+  saveDetail(data: any): Observable<any> {
+    return this.http.post<any>(`${this.urlBase}/article-detail`, data);
+  }
+
+  getDetail(id: number): Observable<any> {
+    return this.http.get<any>(`${this.urlBase}/article-detail/${id}`);
+  }
+  editArticleDetail(data: any, id: number): Observable<any> {
+    return this.http.put<any>(`${this.urlBase}/article-detail/${id}`, data);
+  }
+  editArticle(data: any, id: number): Observable<any> {
+    return this.http.put<any>(`${this.urlBase}/article/${id}`, data);
+  }
 }

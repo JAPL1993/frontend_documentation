@@ -1,7 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DocumentationRoutingModule } from './documentation-routing-module';
-import { AddSectionModal, SectionComponent } from './section/section.component';
+import {
+  AddSectionModal,
+  EditSectionModalComponent,
+  SectionComponent,
+} from './section/section.component';
 import { DocsService } from './docs.service';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
@@ -12,9 +16,15 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatSelectModule } from '@angular/material/select';
+
 import {
   AddArticleModal,
+  AddDetail,
+  ArticleDetail,
   ArticlesComponent,
+  EditArticleModal,
+  EditDetailModal,
 } from './section/actions/articles/articles.component';
 
 @NgModule({
@@ -23,6 +33,11 @@ import {
     AddSectionModal,
     ArticlesComponent,
     AddArticleModal,
+    ArticleDetail,
+    AddDetail,
+    EditDetailModal,
+    EditArticleModal,
+    EditSectionModalComponent,
   ],
   imports: [
     CommonModule,
@@ -36,6 +51,7 @@ import {
     FormsModule,
     MatMenuModule,
     MatExpansionModule,
+    MatSelectModule,
   ],
   providers: [DocsService],
 })
